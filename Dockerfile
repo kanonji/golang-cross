@@ -1,9 +1,7 @@
-ARG GO_VERSION=1.19
+ARG GO_VERSION=1.24
 
-FROM golang:${GO_VERSION}-buster
+FROM golang:${GO_VERSION}-bookworm
 ARG APT_MIRROR
-RUN sed -ri "s/(httpredir|deb).debian.org/${APT_MIRROR:-deb.debian.org}/g" /etc/apt/sources.list \
- && sed -ri "s/(security).debian.org/${APT_MIRROR:-security.debian.org}/g" /etc/apt/sources.list
 
 RUN apt-get update -qq && apt-get install -y -q --no-install-recommends \
     clang \
